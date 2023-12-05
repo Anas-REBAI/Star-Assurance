@@ -11,7 +11,7 @@ import impactRouter from './routes/impact.js';
 const app = express();
 // app configuration
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 const port = process.env.PORT || 3000;
 // DataBase
@@ -26,10 +26,10 @@ mongoose
     console.log(err);
   });
 
-  // path
-  app.use('/historique', historiqueRouter );
-  app.use('/impact', impactRouter );
+// path
+app.use('/historique', historiqueRouter);
+app.use('/impact', impactRouter);
 
-  app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}/`);
-  });
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}/`);
+});

@@ -1,13 +1,13 @@
 <!-- Page Header Start -->
 <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
     <div class="container py-5">
-        <h1 class="display-4 animated slideInDown mb-4">Appointment</h1>
+        <h1 class="display-4 animated slideInDown mb-4">Sign Up</h1>
         <nav aria-label="breadcrumb animated slideInDown">
             <ol class="breadcrumb mb-0">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                 <li class="breadcrumb-item"><a href="#">Pages</a></li>
                 <li class="breadcrumb-item active" aria-current="page">
-                    Appointment
+                    Sign Up
                 </li>
             </ol>
         </nav>
@@ -15,20 +15,19 @@
 </div>
 <!-- Page Header End -->
 
-<!-- Appointment Start -->
+<!-- SignUp Start -->
 <div class="container-fluid py-5 wow fadeIn" data-wow-delay="0.1s">
     <div class="container">
         <div class="row g-5">
             <div class="col-lg-6 wow fadeIn" data-wow-delay="0.3s">
                 <h1 class="display-6 mb-5">
-                    We're Award Winning Insurance Company
+                    Create Your Account
                 </h1>
+                <p class="mb-1">
+                    Welcome to our platform.
+                </p>
                 <p class="mb-5">
-                    Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed
-                    stet lorem sit clita duo justo magna dolore erat amet. Tempor erat
-                    elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet
-                    diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit
-                    clita duo justo magna.
+                    Create your account and get started.
                 </p>
                 <div class="bg-light rounded p-3">
                     <div class="d-flex align-items-center bg-white rounded p-3">
@@ -41,12 +40,11 @@
                 <div class="bg-light rounded p-5">
                     <form [formGroup]="signupForm">
                         <div class="row g-3">
-
                             <div class="col-sm-6 form-group">
                                 <div class="form-floating">
                                     <input type="text" class="form-control" id="fname" formControlName="firstName"
                                         placeholder="First Name" />
-                                    <label for="fname">Your First Name</label>
+                                    <label for="fname">First Name</label>
                                 </div>
                                 <div *ngIf="isInvalid('firstName')" class="text-danger">
                                     <div>{{ getErrorMsg('firstName') }}</div>
@@ -57,7 +55,7 @@
                                 <div class="form-floating">
                                     <input type="text" class="form-control" id="lname" formControlName="lastName"
                                         placeholder="Last Name" />
-                                    <label for="lname">Your Last Name</label>
+                                    <label for="lname">Last Name</label>
                                 </div>
                                 <div *ngIf="isInvalid('lastName')" class="text-danger">
                                     <div>{{ getErrorMsg('lastName') }}</div>
@@ -67,8 +65,8 @@
                             <div class="col-sm-6 form-group">
                                 <div class="form-floating">
                                     <input type="email" class="form-control" id="gmail" formControlName="email"
-                                        placeholder="Guardian Email" />
-                                    <label for="gmail">Your Email</label>
+                                        placeholder="Email" />
+                                    <label for="gmail">Email</label>
                                 </div>
                                 <div *ngIf="isInvalid('email')" class="text-danger">
                                     <div>{{ getErrorMsg('email') }}</div>
@@ -79,19 +77,17 @@
                                 <div class="form-floating">
                                     <input type="tel" class="form-control" id="mobile" formControlName="tel"
                                         placeholder="Mobile Number" />
-                                    <label for="mobile">Your Mobile</label>
+                                    <label for="mobile">Mobile</label>
                                 </div>
                                 <div *ngIf="isInvalid('tel')" class="text-danger">
                                     <div>{{ getErrorMsg('tel') }}</div>
                                 </div>
                             </div>
 
-
                             <div class="col-12 form-group">
-                                <button class="btn btn-primary py-3 px-5" type="submit" (click)="signup()"
-                                    [disabled]="signupForm.invalid">Sign In</button>
+                                <input class="btn btn-primary py-3 px-5" type="submit" (click)="signup()"
+                                [disabled]="!isFormValid()"  value="Sign Up">
                             </div>
-
                         </div>
                     </form>
                 </div>
@@ -99,4 +95,4 @@
         </div>
     </div>
 </div>
-<!-- Appointment End -->
+<!-- SignUp End -->

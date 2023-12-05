@@ -9,24 +9,23 @@ import { Router } from '@angular/router';
 })
 export class SignupComponent {
   signupForm: FormGroup;
+  user: any={};
 
   constructor(private formBuilder: FormBuilder, private router: Router) {
     this.signupForm = this.formBuilder.group({
       firstName: ["", [Validators.required, Validators.minLength(3)]],
       lastName: ["", [Validators.required, Validators.minLength(3)]],
       email: ["", [Validators.required, Validators.email]],
-      pwd: ["", [Validators.required, Validators.minLength(6), Validators.maxLength(12)]],
       tel: ["", [Validators.required, Validators.pattern('[0-9]{8}')]],
-
     });
   }
 
-  isInvalid(controlName: string): boolean {
+  isInvalid(controlName: string) {
     const control = this.signupForm.get(controlName);
-    return !!control && control.invalid && (control.dirty || control.touched);
+    return control && control.invalid && (control.dirty || control.touched);
   }
 
-  getErrorMsg(fieldName: string): string {
+  getErrorMsg(fieldName: string) {
     const field = this.signupForm.get(fieldName);
 
     if (field?.errors?.['required']) {
@@ -43,8 +42,14 @@ export class SignupComponent {
     }
     return '';
   }
-  signup() {
+  isFormValid() {
+    const { firstName, lastName, email, tel } = this.signupForm.controls;
+    return firstName.valid && lastName.valid && email.valid && tel.valid;
+}
 
+  signup() {
+    this.user = this.signupForm.value
+    console.log(this.user);
   }
 
 
