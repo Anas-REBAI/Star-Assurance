@@ -1,7 +1,7 @@
-import User from "../models/user.js";
-import cryptoRandomString from 'crypto-random-string';
+const User = require("../models/user");
+const cryptoRandomString = require('crypto-random-string')
 
-export async function sendEmail(req, res) {
+async function sendEmail(req, res) {
     try {
         const userEmail = await User.findOne({ email: req.body.email });
         if (userEmail) {
@@ -21,11 +21,14 @@ export async function sendEmail(req, res) {
                 return res.status(400).json({ error: 'Error creating user' });
             }
             sendActivationEmail(savedUser.email, activationToken); // Supposons une fonction pour envoyer l'email
+            console.log(savedUser.email, activationToken);
             res.status(201).json({ message: 'Email sent, please choose your password' });
+            
         });
     } catch (error) {
         res.status(500).json({ error: 'Server error' });
     }
 }
- 
+
+
 

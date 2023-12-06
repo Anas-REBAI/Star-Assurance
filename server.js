@@ -1,12 +1,12 @@
 // import "express" module
-import express from 'express';
+const express = require('express');
 // import "body-parser" module
-import bodyParser from 'body-parser';
+const bodyParser = require('body-parser');
 // import "mongoose" module
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 // import "routes"
-import historiqueRouter from './routes/historique.js';
-import impactRouter from './routes/impact.js';
+const userRouter = require('./backend/controllers/user-controller');
+
 // creates express application (app)
 const app = express();
 // app configuration
@@ -27,8 +27,8 @@ mongoose
   });
 
 // path
-app.use('/historique', historiqueRouter);
-app.use('/impact', impactRouter);
+app.use('/user', userRouter);
+
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}/`);
