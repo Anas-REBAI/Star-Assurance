@@ -1,5 +1,9 @@
-const User = require("../models/user");
-const cryptoRandomString = require('crypto-random-string')
+const User = require("../models/user-model");
+// const cryptoRandomString = require('crypto-random-string');
+const { v4: uuidv4 } = require('uuid');
+
+
+
 
 async function sendEmail(req, res) {
     try {
@@ -7,7 +11,9 @@ async function sendEmail(req, res) {
         if (userEmail) {
             return res.status(400).json({ error: 'Email already exists' });
         }
-        const activationToken = cryptoRandomString({ length: 20, type: 'url-safe' });
+
+        // const activationToken = cryptoRandomString({ length: 20, type: 'url-safe' });
+        const activationToken = uuidv4();
         const user = new User({
             firstName: req.body.firstName,
             lastName: req.body.lastName,
@@ -23,12 +29,13 @@ async function sendEmail(req, res) {
             sendActivationEmail(savedUser.email, activationToken); // Supposons une fonction pour envoyer l'email
             console.log(savedUser.email, activationToken);
             res.status(201).json({ message: 'Email sent, please choose your password' });
-            
+
         });
     } catch (error) {
         res.status(500).json({ error: 'Server error' });
     }
 }
+module.exports = { sendEmail };
 
 
 

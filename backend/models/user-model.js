@@ -1,8 +1,8 @@
 // import du module mongoose
-import mongoose from "mongoose";
-// import du module mongoose-unique-validator
-import uniqueValidator from "mongoose-unique-validator";
+const mongoose = require('mongoose');
 
+// import du module mongoose-unique-validator
+const uniqueValidator = require('mongoose-unique-validator');
 // Création du schéma User
 const userSchema = new mongoose.Schema({
     firstName: String,
@@ -20,4 +20,4 @@ userSchema.plugin(uniqueValidator);
 const User = mongoose.model("User", userSchema);
 
 // Export du modèle User
-export default User;
+module.exports = User;

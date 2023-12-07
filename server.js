@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 // import "mongoose" module
 const mongoose = require('mongoose');
 // import "routes"
-const userRouter = require('./backend/controllers/user-controller');
+const userRouter = require('./backend/routes/user-route');
 
 // creates express application (app)
 const app = express();
