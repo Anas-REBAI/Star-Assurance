@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -9,7 +10,7 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  sendEmail(obj:any){
-    return this.http.post<{ msg: boolean }>(this.userURL + "/sendEmail", obj);
+  sendEmail(obj: any) {
+    return this.http.post<{ message: any }>(`${this.userURL}/sendEmail`, obj);
   }
 }

@@ -52,7 +52,7 @@ export class SignupComponent {
     this.user = this.signupForm.value
     console.log(this.user);
 this.userService.sendEmail(this.user).subscribe((response)=>{
-  console.log("response",response);
+  console.log("Here response from B.E :",response.message);
   
 })
   }
