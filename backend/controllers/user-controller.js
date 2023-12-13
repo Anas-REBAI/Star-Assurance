@@ -27,7 +27,7 @@ function sendActivationEmail(email, activationToken, name) {
                 <h1>Activation du compte</h1>
                 <h2>Bonjour ${name}</h2>
                 <p>Veuillez ajouter votre mot de passe en cliquant sur le lien suivant:</p>
-                <a href="http://localhost:4200/createPassword/${activationToken}">Cliquez ici pour confirmer</a>
+                <a routerLink="http://localhost:4200/createPassword/${activationToken}">Cliquez ici pour confirmer</a>
             </div>`
     })
         .catch((err) => console.log(err)); // Gérer les erreurs d'envoi d'e-mail
@@ -49,12 +49,10 @@ module.exports.sendEmail = async (req, res) => {
 
         const user = new User(userData);
 
-        // Sauvegarder l'utilisateur dans la base de données
-        await user.save();
-
         // Appel de la fonction pour envoyer l'e-mail d'activation
         sendActivationEmail(user.email, activationToken, user.firstName);
-
+        // Sauvegarder l'utilisateur dans la base de données
+        await user.save();
         res.status(201).json({ message: 'Email sent, please choose your password' });
 
     } catch (error) {

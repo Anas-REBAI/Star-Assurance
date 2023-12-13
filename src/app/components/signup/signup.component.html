@@ -40,53 +40,85 @@
                 <div class="bg-light rounded p-5">
                     <form [formGroup]="signupForm">
                         <div class="row g-3">
-                            <div class="col-sm-6 form-group">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="fname" formControlName="firstName"
-                                        placeholder="First Name" />
-                                    <label for="fname">First Name</label>
+                            <div *ngIf="pathDetected()">
+                                <div class="col-sm-6 form-group">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="fname" formControlName="firstName"
+                                            placeholder="First Name" />
+                                        <label for="fname">First Name</label>
+                                    </div>
+                                    <div *ngIf="isInvalid('firstName')" class="text-danger">
+                                        <div>{{ getErrorMsg('firstName') }}</div>
+                                    </div>
                                 </div>
-                                <div *ngIf="isInvalid('firstName')" class="text-danger">
-                                    <div>{{ getErrorMsg('firstName') }}</div>
+
+                                <div class="col-sm-6 form-group">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="lname" formControlName="lastName"
+                                            placeholder="Last Name" />
+                                        <label for="lname">Last Name</label>
+                                    </div>
+                                    <div *ngIf="isInvalid('lastName')" class="text-danger">
+                                        <div>{{ getErrorMsg('lastName') }}</div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6 form-group">
+                                    <div class="form-floating">
+                                        <input type="email" class="form-control" id="gmail" formControlName="email"
+                                            placeholder="Email" />
+                                        <label for="email">Email</label>
+                                    </div>
+                                    <div *ngIf="isInvalid('email')" class="text-danger">
+                                        <div>{{ getErrorMsg('email') }}</div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6 form-group">
+                                    <div class="form-floating">
+                                        <input type="tel" class="form-control" id="mobile" formControlName="tel"
+                                            placeholder="Mobile Number" />
+                                        <label for="mobile">Mobile</label>
+                                    </div>
+                                    <div *ngIf="isInvalid('tel')" class="text-danger">
+                                        <div>{{ getErrorMsg('tel') }}</div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-12 form-group">
+                                    <input class="btn btn-primary py-3 px-5" type="submit" (click)="signup()"
+                                        [disabled]="!isBasicInfoValid()" value="Create Account">
                                 </div>
                             </div>
-
+                        </div>
+                        <div *ngIf="!pathDetected()">
                             <div class="col-sm-6 form-group">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="lname" formControlName="lastName"
-                                        placeholder="Last Name" />
-                                    <label for="lname">Last Name</label>
+                                    <input type="password" class="form-control" id="pwd" formControlName="pwd"
+                                        placeholder="Password" />
+                                    <label for="pwd">Password</label>
                                 </div>
-                                <div *ngIf="isInvalid('lastName')" class="text-danger">
-                                    <div>{{ getErrorMsg('lastName') }}</div>
+                                <div *ngIf="isInvalid('pwd')" class="text-danger">
+                                    <div>{{ getErrorMsg('pwd') }}</div>
                                 </div>
                             </div>
-
                             <div class="col-sm-6 form-group">
                                 <div class="form-floating">
-                                    <input type="email" class="form-control" id="gmail" formControlName="email"
-                                        placeholder="Email" />
-                                    <label for="gmail">Email</label>
+                                    <input type="password" class="form-control" id="confirmPwd"
+                                        formControlName="confirmPwd" placeholder="Confirm Password" />
+                                    <label for="confirmPwd">Confirm Password</label>
                                 </div>
-                                <div *ngIf="isInvalid('email')" class="text-danger">
-                                    <div>{{ getErrorMsg('email') }}</div>
+                                <div *ngIf="isInvalid('confirmPwd')" class="text-danger">
+                                    <div>{{ getErrorMsg('confirmPwd') }}</div>
                                 </div>
-                            </div>
-
-                            <div class="col-sm-6 form-group">
-                                <div class="form-floating">
-                                    <input type="tel" class="form-control" id="mobile" formControlName="tel"
-                                        placeholder="Mobile Number" />
-                                    <label for="mobile">Mobile</label>
-                                </div>
-                                <div *ngIf="isInvalid('tel')" class="text-danger">
-                                    <div>{{ getErrorMsg('tel') }}</div>
+                                <div *ngIf="!isPasswordConfirmed()" class="text-danger">
+                                    <div>Passwords do not match</div>
                                 </div>
                             </div>
-
                             <div class="col-12 form-group">
-                                <input class="btn btn-primary py-3 px-5" type="submit" (click)="signup()"
-                                [disabled]="!isFormValid()"  value="Sign Up">
+                                <input class="btn btn-primary py-3 px-5" type="submit" (click)="createPwd()"
+                                    [disabled]="!isFormPwdValid() || !isPasswordConfirmed()" value="Sign Up">
                             </div>
                         </div>
                     </form>
