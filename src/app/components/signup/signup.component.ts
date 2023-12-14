@@ -82,14 +82,28 @@ export class SignupComponent {
 
     this.pwdUser.pwd = this.signupForm.get('pwd')?.value
     this.pwdUser.activationToken = activationToken
-    
+
 
     this.userService.signup(this.pwdUser).subscribe((response) => {
-      console.log("Here response from B.E :", response.message);
-    })
+      console.log("Response from the backend:", response.message);
+      alert("Backend Response: " + response.message);
+      // Traiter la réponse ici, si nécessaire
+    },
+    (error) => {
+      console.error("Error occurred:", error);
+      if (error && error.error && error.error.error) {
+        // Afficher l'erreur dans une alerte
+        alert("Backend Error: " + error.error.error);
+      } else {
+        // Si l'erreur n'est pas structurée comme attendu, afficher un message générique
+        alert("Une erreur s'est produite. Veuillez réessayer.");
+      }
+    }
+  );
     this.router.navigate([""]);
 
   }
 
+  
 
 }

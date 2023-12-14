@@ -11,6 +11,7 @@ const userSchema = new mongoose.Schema({
     pwd: String,
     tel: { type: String, unique: true },
     activationToken: String,
+    role: String,
 });
 
 // Utilisation du plugin mongoose-unique-validator
