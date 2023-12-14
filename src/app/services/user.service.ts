@@ -10,7 +10,7 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  sendEmail(obj: any) {
-    return this.http.post<{ message: any }>(`${this.userURL}/sendEmail`, obj);
+  signup(obj: any) {
+    return this.http.post<{ message: any }>(`${this.userURL}/signup`, obj);
   }
 }

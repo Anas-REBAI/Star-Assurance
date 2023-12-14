@@ -11,6 +11,7 @@ import { UserService } from 'src/app/services/user.service';
 export class SignupComponent {
   signupForm: FormGroup;
   user: any = {};
+  pwdUser: any = {};
   path: any;
 
   constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router, private activateRoute: ActivatedRoute) {
@@ -54,7 +55,7 @@ export class SignupComponent {
   isPasswordConfirmed(): boolean {
     return this.signupForm.get('pwd')?.value === this.signupForm.get('confirmPwd')?.value;
   }
-  
+
   isBasicInfoValid() {
     const { firstName, lastName, email, tel } = this.signupForm.controls;
     return firstName.valid && lastName.valid && email.valid && tel.valid;
@@ -67,7 +68,7 @@ export class SignupComponent {
   signup() {
     this.user = this.signupForm.value
     console.log(this.user);
-    this.userService.sendEmail(this.user).subscribe((response) => {
+    this.userService.signup(this.user).subscribe((response) => {
       console.log("Here response from B.E :", response.message);
 
     })
@@ -79,7 +80,14 @@ export class SignupComponent {
   createPwd() {
     let activationToken = this.activateRoute.snapshot.paramMap.get("activationToken");
 
+    this.pwdUser.pwd = this.signupForm.get('pwd')?.value
+    this.pwdUser.activationToken = activationToken
+    
 
+    this.userService.signup(this.pwdUser).subscribe((response) => {
+      console.log("Here response from B.E :", response.message);
+    })
+    this.router.navigate([""]);
 
   }
 

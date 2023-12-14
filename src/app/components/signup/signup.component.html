@@ -39,8 +39,8 @@
             <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
                 <div class="bg-light rounded p-5">
                     <form [formGroup]="signupForm">
-                        <div class="row g-3">
-                            <div *ngIf="pathDetected()">
+                        <div class="row g-3" *ngIf="pathDetected()">
+                            
                                 <div class="col-sm-6 form-group">
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="fname" formControlName="firstName"
@@ -90,9 +90,9 @@
                                     <input class="btn btn-primary py-3 px-5" type="submit" (click)="signup()"
                                         [disabled]="!isBasicInfoValid()" value="Create Account">
                                 </div>
-                            </div>
+    
                         </div>
-                        <div *ngIf="!pathDetected()">
+                        <div class="row g-3" *ngIf="!pathDetected()">
                             <div class="col-sm-6 form-group">
                                 <div class="form-floating">
                                     <input type="password" class="form-control" id="pwd" formControlName="pwd"
