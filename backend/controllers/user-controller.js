@@ -3,6 +3,7 @@ const nodemailer = require("nodemailer");
 // const cryptoRandomString = require('crypto-random-string');
 const { v4: uuidv4 } = require('uuid');
 const bcrypt = require("bcrypt");
+// const randomatic = require('randomatic');
 
 // Création d'un objet de transporteur (transporter) pour les e-mails sortants
 const transporter = nodemailer.createTransport({
@@ -23,8 +24,7 @@ function sendEmail(email, activationToken, name) {
         from: "mekrazikilanii@gmail.com", // Adresse expéditeur
         to: email, // Adresse destinataire
         subject: "Veuillez activer votre compte", // Sujet de l'e-mail
-        html: `
-            <div>
+        html: `<div>
                 <h1>Activation du compte</h1>
                 <h2>Bonjour ${name}</h2>
                 <p>Veuillez ajouter votre mot de passe en cliquant sur le lien suivant:</p>
@@ -69,5 +69,12 @@ module.exports.signup = async (req, res) => {
         res.status(500).json({ error: 'Server error' });
     }
 };
+
+// function generateSevenCharNumber() {
+//     const randomNumber = randomatic('0', 5); // Génère un nombre de 7 chiffres
+//     return randomNumber;
+//   }
+  
+//   console.log(generateSevenCharNumber());
 
 

@@ -49,7 +49,6 @@ export class AddclientComponent {
     return '';
   }
 
-
   isBasicInfoValid() {
     const { firstName, lastName, tel1 } = this.addClientForm.controls;
     return firstName.valid && lastName.valid && tel1.valid;

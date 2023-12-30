@@ -10,6 +10,8 @@ import { SignupComponent } from './components/signup/signup.component';
 import { SigninComponent } from './components/signin/signin.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { AddclientComponent } from './components/addclient/addclient.component';
+import { AddsinistreComponent } from './components/addsinistre/addsinistre.component';
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import { HttpClientModule } from '@angular/common/http';
     FooterComponent,
     HomeComponent,
     SignupComponent,
-    SigninComponent
+    SigninComponent,
+    AddclientComponent,
+    AddsinistreComponent
   ],
   imports: [
     BrowserModule,
